@@ -1,0 +1,71 @@
+:: StoryTitle
+SugarCube Scientific Notation Improved
+
+
+:: StoryData
+{
+  "ifid": "53EFAD15-B6E7-4C9F-BE70-27576ED502F5",
+  "format": "SugarCube",
+  "format-version": "2.36.1",
+  "start": "x10",
+  "zoom": 1
+}
+
+
+:: Scientific Notation Conversion Widget [widget] {"position":"500,300","size":"100,100"}
+<<widget "sciNotation">>
+\<<script>>
+let number = State.getVar("_args[0]");
+let numberLength = State.getVar("_args[2]");
+let numberPreDec = Math.abs(number).toString().split('.')[0];
+let numberSci;
+
+if (numberPreDec >= State.getVar("_args[1]")) {
+    numberSci = number.toExponential(numberLength);
+    numberSci = numberSci.replace(/\+/g, '');
+} else {
+    numberSci = number;
+}
+
+State.setVar("_numberSci", numberSci);
+<</script>>
+\_numberSci
+<</widget>>
+
+
+:: x10 {"position":"500,500","size":"100,100"}
+<<button [[x10]]>><</button>>
+<<if $number >= 0 is false>>\
+	<<set $number to 1>>\
+<</if>>\
+\
+<<set $number *= 9>>\
+<<set $sciStart to 1000000>>\
+<<set $sciLength to 4>>\
+
+!Normal Scientific Notation
+!!$number
+
+Stars at 1e21 (too late)
+Ugly
+
+
+
+!Scientific Notation Improved
+!!<<sciNotation $number $sciStart $sciLength>>
+
+Customisable start (currently $sciStart)
+Customisable length (currently $sciLength)
+No ugly '+'
+
+
+
+!Variables
+$number is the number you want to put into scientific notation
+$sciStart is the number that $number must reach in order to be put into scientific notation
+$numberSci is the output of the javascript section
+
+The .twee file contains a widget passage that contains a widget with inputs and replaces itself with the output.
+The widget is simply a more copyable and reusable version of what is shown here.
+
+
