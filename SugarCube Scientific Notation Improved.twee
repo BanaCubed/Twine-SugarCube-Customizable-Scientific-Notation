@@ -17,12 +17,11 @@ SugarCube Scientific Notation Improved
 \<<script>>
 let number = State.getVar("_args[0]");
 let numberLength = State.getVar("_args[2]");
-let numberPreDec = Math.abs(number).toString().split('.')[0];
 let numberSci;
 
-if (numberPreDec >= State.getVar("_args[1]")) {
+if (number >= State.getVar("_args[1]")) {
     numberSci = number.toExponential(numberLength);
-    numberSci = numberSci.replace(/\+/g, '');
+    numberSci = numberSci.replace(/\+/g, ''); /* remove this line to return the '+' in the output */
 } else {
     numberSci = number;
 }
