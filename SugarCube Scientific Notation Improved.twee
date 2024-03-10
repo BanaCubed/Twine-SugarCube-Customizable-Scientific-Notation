@@ -32,8 +32,8 @@ State.setVar("_numberSci", numberSci);
 <</widget>>
 
 
-:: x10 {"position":"500,500","size":"100,100"}
-<<button [[x10]]>><</button>>
+:: x9 {"position":"500,500","size":"100,100"}
+<<button [[x9]]>><</button>>
 <<if $number >= 0 is false>>\
 	<<set $number to 1>>\
 <</if>>\
